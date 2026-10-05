@@ -29,8 +29,8 @@ developer: csikosjanos (runner manager), myoung34 (base runner image)
 website: https://github.com/csikosjanos/umbrel-app-store
 submitter: csikosjanos
 submission: ""
-repo: https://github.com/csikosjanos/umbrel-app-store/tree/main/csikosjanos-github-runner
-support: https://github.com/csikosjanos/umbrel-app-store/issues
+repo: https://github.com/jimmydjabali/umbrel-app-store/tree/main/csikosjanos-github-runner
+support: https://github.com/jimmydjabali/umbrel-app-store/issues
 gallery: []
 releaseNotes: >-
   2.0.2 — The image is now also built for arm64 (Raspberry Pi 4/5). New
