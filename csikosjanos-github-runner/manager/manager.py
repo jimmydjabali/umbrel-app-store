@@ -51,7 +51,13 @@ NAME_RE = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
 ORG_RE = re.compile(r"^[A-Za-z0-9-]{1,39}$")
 REPO_RE = re.compile(r"^[A-Za-z0-9-]{1,39}/[A-Za-z0-9._-]{1,100}$")
 LABEL_RE = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
-DEFAULT_LABELS = "self-hosted,linux,x64,umbrel"
+# GitHub adds the self-hosted, OS and architecture labels (x64 / ARM64) by
+# itself, so the default only adds "umbrel". Hard-coding "x64" here would
+# mislabel runners on ARM64 boxes (Raspberry Pi).
+DEFAULT_LABELS = "umbrel"
+# 1.x (amd64 only) registered with these; the migration keeps them so existing
+# workflows still match the imported runner.
+LEGACY_LABELS = "self-hosted,linux,x64,umbrel"
 FIELDS = ("name", "scope", "target", "labels", "group", "ephemeral", "enabled")
 
 
@@ -164,7 +170,7 @@ class Store:
         # 1.x hard-coded everything but ORG_NAME/ACCESS_TOKEN in its compose
         # file; keep exactly those values so workflows see the same runner.
         r = validate({"name": "rozsa-umbrel", "scope": "org", "target": env["ORG_NAME"],
-                      "labels": DEFAULT_LABELS, "group": "default",
+                      "labels": LEGACY_LABELS, "group": "default",
                       "ephemeral": False, "enabled": True})
         r["id"] = 1
         self.runners.append(r)

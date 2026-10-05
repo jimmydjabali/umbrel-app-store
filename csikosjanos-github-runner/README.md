@@ -203,7 +203,7 @@ sudo docker logs -f csikosjanos-github-runner_runner_1   # all runners, prefixed
 
 ## Limitations
 
-- Linux/x64 jobs only. Windows/macOS builds need their own runners.
+- Linux jobs only (x64 or ARM64, depending on the box). Windows/macOS builds need their own runners.
 - Jobs run as an unprivileged user without sudo, so `apt-get install` in a job
   won't work. Use `setup-*` actions or tools that are already in the image.
 - No `docker.sock`, so jobs can't build images.

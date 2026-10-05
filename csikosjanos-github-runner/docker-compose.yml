@@ -14,7 +14,7 @@ services:
   # afterwards it only notes whether the old .env still exists (for a UI hint).
   # Always exits 0, so a failed import can't block the runner service.
   migrate:
-    image: ghcr.io/csikosjanos/github-runner-manager:2.0.1
+    image: ghcr.io/csikosjanos/github-runner-manager:2.0.2
     command: ["python3", "/opt/manager/manager.py", "--migrate"]
     restart: "no"
     volumes:
@@ -26,7 +26,7 @@ services:
   # One container runs the web UI and every runner (one process per runner,
   # each as its own unprivileged uid). No docker.sock. See README.
   runner:
-    image: ghcr.io/csikosjanos/github-runner-manager:2.0.1
+    image: ghcr.io/csikosjanos/github-runner-manager:2.0.2
     restart: unless-stopped
     depends_on:
       migrate:
